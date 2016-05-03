@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html ng-app='app'>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+	<script>
+	//Initialize AngularJS app
+		var app = angular.module('app', []);
+
+	//Initialize main controller
+		app.controller('MainCtrl', function(airportService){
+			var vm = this;
+
+			vm.flights = airportService;
+			vm.today = 'May 3rd 2016';
+			console.log(vm.flights);
+		})
+
+		app.factory('airportService', function(){
+			var flights = 
+					[
+						{
+							airport: 'LAX',
+							price: 320,
+							flight_hours: 4
+						},
+						{
+							airport: 'JFK',
+							price: 300,
+							flight_hours: 4
+						},
+						{
+							airport: 'CHI',
+							price: 400,
+							flight_hours: 5
+						},
+						{
+							airport: 'PHI',
+							price: 500,
+							flight_hours: 6
+						}
+
+						]
+		return flights;			
+
+			
+		})
+
+
+	</script>
+</head>
+<body ng-controller='MainCtrl as vm'>
+	<div class="container">
+		<div class="jumbotron">
+		<h1>Your flights for {{vm.today}} </h1>
+		<ul style="list-style-type:none;">
+			<li class="" ng-repeat="flight in vm.flights"> Airport: {{flight.airport}} Price: {{flight.price}} Time: {{flight.flight_hours}}</div>
+			</li>
+		</ul>
+	</div>
+</body>
+</html>
